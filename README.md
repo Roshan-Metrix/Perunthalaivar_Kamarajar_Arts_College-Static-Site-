@@ -51,4 +51,4 @@ For contributions, please submit a pull request with your changes.
 
 ## License
 
-All rights reserved © Perunthalaivar Kamarajar Arts College
+All rights reserved © Perunthalaivar Kamarajar Arts College, Puducherry
