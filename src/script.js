@@ -46,10 +46,10 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
                                 <a href="./about.html#principal-desk"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-400 hover:text-gray-900">Principal
                                     Desk</a>
-                                <a href="./officeAdmin.html"
+                                <a href="./about.html"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-400 hover:text-gray-900">Office
                                     Administration</a>
-                                <a href="./rti.html"
+                                <a href="./about.html"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-400 hover:text-gray-900">RTI</a>
                             </div>
                         </div>
