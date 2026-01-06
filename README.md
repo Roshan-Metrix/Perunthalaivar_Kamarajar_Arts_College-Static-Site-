@@ -15,7 +15,6 @@ A static website for Perunthalaivar Kamarajar Arts College, built to showcase th
 ## Project Structure
 
 ```
-/
 |── faculty_images
 |── images
 |── infrastructure
@@ -38,6 +37,10 @@ A static website for Perunthalaivar Kamarajar Arts College, built to showcase th
 - HTML5
 - CSS3 & Tailwindcss
 - JavaScript
+
+## Screenshots
+
+![College Website Screenshot](./screenshots/PK_College.jpeg)
 
 ## Installation
 
