@@ -27,7 +27,7 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
 
                     <!-- About Us Dropdown -->
                     <div class="relative group">
-                        <a href="./about.html" class="nav-link text-gray-600 font-medium flex items-center">
+                        <a href="./about.html" class="nav-link text-gray-600 font-medium flex items-center hover:bg-amber-500 hover:px-2 hover:rounded hover:text-white">
                             <span>About us</span>
                             <svg class="w-5 h-5 ml-1 text-gray-600 transition-transform duration-300 group-hover:rotate-180"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -59,7 +59,7 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
 
                     <!-- Admission Dropdown -->
                     <div class="relative group">
-                        <a href="./calender.html" class="nav-link text-gray-600 font-medium flex items-center">
+                        <a href="./calender.html" class="nav-link text-gray-600 font-medium flex items-center hover:bg-amber-500 hover:px-2 hover:rounded hover:text-white">
                             <span>Admission</span>
                             <svg class="w-5 h-5 ml-1 text-gray-600 transition-transform duration-300 group-hover:rotate-180"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -92,7 +92,7 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
 
                     <!-- Infrastructure Dropdown -->
                     <div class="relative group">
-                        <a href="./infrastructure.html" class="nav-link text-gray-600 font-medium flex items-center">
+                        <a href="./infrastructure.html" class="nav-link text-gray-600 font-medium flex items-center hover:bg-amber-500 hover:px-2 hover:rounded hover:text-white">
                             <span>Infrastructure</span>
                             <svg class="w-5 h-5 ml-1 text-gray-600 transition-transform duration-300 group-hover:rotate-180"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -124,7 +124,7 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
 
                     <!-- Activities Dropdown -->
                     <div class="relative group">
-                        <a href="./activities.html" class="nav-link text-gray-600 font-medium flex items-center">
+                        <a href="./activities.html" class="nav-link text-gray-600 font-medium flex items-center hover:bg-amber-500 hover:px-2 hover:rounded hover:text-white">
                             <span>Activities</span>
                             <svg class="w-5 h-5 ml-1 text-gray-600 transition-transform duration-300 group-hover:rotate-180"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
@@ -163,7 +163,7 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
 
                     <!-- Report Dropdown -->
                     <div class="relative group">
-                        <a href="./reports.html" class="nav-link text-gray-600 font-medium flex items-center">
+                        <a href="./reports.html" class="nav-link text-gray-600 font-medium flex items-center hover:bg-amber-500 hover:px-2 hover:rounded hover:text-white">
                             <span>Reports</span>
                             <svg class="w-5 h-5 ml-1 text-gray-600 transition-transform duration-300 group-hover:rotate-180"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
