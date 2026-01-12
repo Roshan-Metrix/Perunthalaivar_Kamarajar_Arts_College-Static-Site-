@@ -47,6 +47,11 @@
         z-index: 20;
         pointer-events: none;
       }
+      .calendar-day.today {
+        outline: 3px solid #2563eb;
+        outline-offset: -3px;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+      }
     </style>
   </head>
 
@@ -222,7 +227,8 @@
             color = "#ff0000";
             // color = "#5A5AF6";
             message = governmentHolidays[id];
-          } else if (dow === 0) { // Sunday
+          } else if (dow === 0) {
+            // Sunday
             type = "holiday";
             // color = "#ff0000";
             color = "rgba(255,0,0,0.8)";
@@ -246,21 +252,36 @@
           const firstDay = new Date(year, month, 1).getDay();
           const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+          // Empty cells before month start
           for (let i = 0; i < firstDay; i++) {
             datesEl.appendChild(document.createElement("div"));
           }
 
+          // Actual days
           for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month, day);
             const info = getDayInfo(date);
 
             const el = document.createElement("div");
-            el.className = `calendar-day flex items-center justify-center font-bold text-lg
-                ${info.type === "working" ? "text-gray-800" : "text-white"}`;
+
+            const today = new Date();
+            const isToday =
+              day === today.getDate() &&
+              month === today.getMonth() &&
+              year === today.getFullYear();
+
+            el.className = `
+      calendar-day flex items-center justify-center font-bold text-lg
+      ${info.type === "working" ? "text-gray-800" : "text-white"}
+      ${isToday ? "today" : ""}
+    `;
+
             el.style.backgroundColor = info.color;
             el.textContent = day;
 
-            if (info.message) el.dataset.message = info.message;
+            if (info.message) {
+              el.dataset.message = info.message;
+            }
 
             datesEl.appendChild(el);
           }
