@@ -1,284 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Courses - University Management</title>
-    <link rel="stylesheet" href="../dist/output.css">
-    <style>
-        .course-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    <link rel="stylesheet" href="../dist/output.css" />
+  </head>
 
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
+  <body>
+    <div id="header-box"></div>
 
-        .auth-required {
-            display: none;
-            /* Hidden by default, shown via JS */
-        }
-    </style>
-</head>
-
-<body>
-   <!--  HEADER  -->
-   <div id="header-box"></div>
-
-    <!-- Main Content Area -->
     <main class="container mx-auto px-6 py-12">
-        <!-- Courses View -->
-        <div id="courses-view">
-            <div class="flex flex-col md:flex-row justify-between md:items-center mb-8 gap-4">
-                <h2 class="text-3xl font-bold">Available Courses</h2>
-            </div>
-            <!-- Search Control -->
-            <div class="bg-white p-4 rounded-lg shadow-md mb-8">
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="relative">
-                        <input type="text" id="searchInput" placeholder="Search courses..."
-                            class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    </div>
-                </div>
-            </div>
+      <!-- Courses View -->
+      <div id="courses-view">
+        <h2 class="text-3xl font-bold mb-6">Available Courses</h2>
 
-            <!-- Courses List -->
-            <div id="courses-list" class="space-y-6">
-                <!-- Course cards will be injected here -->
-            </div>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search courses..."
+          class="w-full mb-6 p-3 border rounded-lg"
+        />
 
-        </div>
+        <div id="courses-list" class="space-y-6"></div>
+      </div>
 
-        <!-- Single Course Details View (Initially Hidden) -->
-        <div id="course-details-view" class="hidden">
-            <div class="mb-8">
-                <button id="backToCoursesBtn"
-                    class="text-gray-600 hover:text-yellow-600 font-semibold flex items-center space-x-2 mb-4">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>Back to All Courses</span>
-                </button>
-                <h2 id="course-title" class="text-4xl font-bold"></h2>
-                <p id="course-description" class="text-gray-600 mt-2 text-lg"></p>
-            </div>
+      <!-- Course Details -->
+      <div id="course-details-view" class="hidden">
+        <button
+          id="backToCoursesBtn"
+          class="text-gray-600 hover:text-yellow-600 font-semibold mb-4"
+        >
+          ← Back to Courses
+        </button>
 
-            <!-- Files List -->
-            <div>
-                <h3 class="text-2xl font-bold mb-4">Course Files</h3>
-                <div id="files-list" class="space-y-4">
-                    <!-- File items will be injected here -->
-                </div>
-            </div>
-        </div>
+        <h2 id="course-title" class="text-4xl font-bold"></h2>
+        <p id="course-description" class="text-gray-600 mt-2 mb-6"></p>
+
+        <h3 class="text-2xl font-bold mb-4">Course Files</h3>
+        <div id="files-list" class="space-y-4"></div>
+      </div>
     </main>
 
-     <!-- Footer -->
     <div id="footer-box"></div>
-     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- STATIC DATA ---
-            let coursesData = [{
-                    id: 1,
-                    name: "B.A (Tamil)",
-                    description: "Bachelor of Arts in Tamil literature.",
-                    files: [{
-                            name: "B.A (Tamil) - Syllabus",
-                            description: "Complete course syllabus for the year.",
-                            url: "../images/pdfs/B.A(Tamil).pdf"
-                        },
-                    ]
-                },
-                {
-                    id: 2,
-                    name: "B.Sc (Mathematics)",
-                    description: "Bachelor of Science in Mathematics.",
-                    files: [{
-                            name: "Maths - Syllabus",
-                            description: "Complete course syllabus for the year.",
-                            url: "../images/pdfs/B.Sc(Maths).pdf"
-                        },
-                    {
-                            name: "Maths with Statistics - Syllabus",
-                            description: "Complete course syllabus for the year.",
-                            url: "../images/pdfs/B.Sc(Maths&St).pdf"
-                        },
-                    ]
-                },
-                {
-                    id: 3,
-                    name: "B.B.A (Tourism)",
-                    description: "Bachelor of Business Administration in Tourism.",
-                    files: [
-                         {
-                            name: "Syllabus",
-                            description: "Complete course syllabus for the year.",
-                            url: "../images/pdfs/B.B.A(Tourism).pdf"
-                        },
-                    ]
-                },
-                {
-                    id: 4,
-                    name: "B.C.A (Computer Applications)",
-                    description: "Bachelor of Computer Applications.",
-                    files: [{
-                            name: "Syllabus",
-                            description: "Complete course syllabus for the year.",
-                            url: "../images/pdfs/B.C.A.pdf"
-                        },
-                    ]
-                },
-                {
-                    id: 5,
-                    name: "B.Com",
-                    description: "Bachelor of Commerce.",
-                    files: [
-                        {
-                            name: "Syllabus",
-                            description: "Complete course syllabus for the year.",
-                            url: "../images/pdfs/B.Com(General).pdf"
-                        },
-                    ]
-                }
-            ];
-            // --- DOM ELEMENTS ---
-            const coursesView = document.getElementById('courses-view');
-            const courseDetailsView = document.getElementById('course-details-view');
-            const coursesList = document.getElementById('courses-list');
-            const backToCoursesBtn = document.getElementById('backToCoursesBtn');
-            const courseTitle = document.getElementById('course-title');
-            const courseDescription = document.getElementById('course-description');
-            const filesListEl = document.getElementById('files-list');
-            const searchInput = document.getElementById('searchInput');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            // --- STATE ---
-            let currentCourseId = null;
-            // --- VIEW SWITCHING ---
-            function showCoursesView() {
-                courseDetailsView.classList.add('hidden');
-                coursesView.classList.remove('hidden');
-                currentCourseId = null;
-                renderCourses();
-            }
 
-            function showCourseDetailsView(courseId) {
-                const numericCourseId = parseInt(courseId, 10);
-                currentCourseId = numericCourseId;
-                const course = coursesData.find(c => c.id === numericCourseId);
-                if (!course) {
-                    showCoursesView();
-                    return;
-                }
-                courseTitle.textContent = course.name;
-                courseDescription.textContent = course.description;
-                coursesView.classList.add('hidden');
-                courseDetailsView.classList.remove('hidden');
-                renderFiles(course.files || []);
-            }
-            // --- RENDERING ---
-            function renderCourses() {
-                const searchTerm = searchInput.value.toLowerCase();
-                let filteredCourses = coursesData.filter(c => c.name.toLowerCase().includes(searchTerm));
-                coursesList.innerHTML = '';
-                if (filteredCourses.length === 0) {
-                    coursesList.innerHTML = `<p class="text-gray-500 text-center">No courses found.</p>`;
-                    return;
-                }
-                filteredCourses.forEach(course => {
-                    const card = document.createElement('div');
-                    card.className =
-                        'course-card bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row justify-between items-start md:items-center';
-                    card.dataset.courseId = course.id;
-                    card.innerHTML = `
-                        <div class="cursor-pointer flex-grow mb-4 md:mb-0" data-action="view">
-                            <h3 class="text-xl font-bold mb-2">${course.name}</h3>
-                            <p class="text-gray-600">${course.description}</p>
-                        </div>
-                       `;
-                    coursesList.appendChild(card);
-                });
-            }
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const API_BASE = "http://localhost:3000/api/college";
 
-            function renderFiles(files) {
-                filesListEl.innerHTML = '';
-                if (!files || files.length === 0) {
-                    filesListEl.innerHTML =
-                        `<p class="text-gray-500 text-center">No files have been added to this course yet.</p>`;
-                    return;
-                }
-                files.forEach(file => {
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'bg-white p-4 rounded-lg shadow-sm flex items-center';
-                    const downloadButton =
-                        `<a href="${file.url}" target="_blank" rel="noopener noreferrer" class="download-file-btn bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold hover:bg-yellow-200">Download</a>`;
-                    fileItem.innerHTML = `
-                        <i class="fas ${getFileIconClass(file.name)} text-2xl text-gray-500 mr-4"></i>
-                        <div class="flex-grow">
-                            <p class="font-semibold">${file.name}</p>
-                            <p class="text-sm text-gray-500">${file.description}</p>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            ${downloadButton}
-                        </div>`;
-                    filesListEl.appendChild(fileItem);
-                });
-            }
-            // --- COURSE ACTIONS ---
-            coursesList.addEventListener('click', (e) => {
-                const courseCard = e.target.closest('.course-card');
-                if (!courseCard) return;
-                const courseId = parseInt(courseCard.dataset.courseId, 10);
-                if (e.target.closest('[data-action="view"]')) {
-                    showCourseDetailsView(courseId);
-                    return;
-                }
+        const coursesData = [
+          {
+            id: 1,
+            name: "B.A (Tamil)",
+            description: "Bachelor of Arts in Tamil literature.",
+            files: [
+              {
+                name: "B.A (Tamil) - Syllabus",
+                description: "Complete course syllabus for the year.",
+                url: "../images/pdfs/B.A(Tamil).pdf",
+              },
+            ],
+          },
+          {
+            id: 2,
+            name: "B.Sc (Mathematics)",
+            description: "Bachelor of Science in Mathematics.",
+            files: [
+              {
+                name: "Maths - Syllabus",
+                description: "Complete course syllabus for the year.",
+                url: "../images/pdfs/B.Sc(Maths).pdf",
+              },
+            ],
+          },
+          {
+            id: 3,
+            name: "B.B.A (Tourism)",
+            description: "Bachelor of Business Administration in Tourism.",
+            files: [
+              {
+                name: "Syllabus",
+                description: "Complete course syllabus for the year.",
+                url: "../images/pdfs/B.B.A(Tourism).pdf",
+              },
+            ],
+          },
+          {
+            id: 4,
+            name: "B.C.A (Computer Application)",
+            description: "Bachelor of Computer Applications.",
+            files: [
+              {
+                name: "Syllabus",
+                description: "Complete course syllabus for the year.",
+                url: "../images/pdfs/B.C.A.pdf",
+              },
+            ],
+          },
+          {
+            id: 5,
+            name: "B.Com",
+            description: "Bachelor of Commerce.",
+            files: [
+              {
+                name: "Syllabus",
+                description: "Complete course syllabus for the year.",
+                url: "../images/pdfs/B.Com(General).pdf",
+              },
+            ],
+          },
+        ];
+
+        const coursesView = document.getElementById("courses-view");
+        const detailsView = document.getElementById("course-details-view");
+        const coursesList = document.getElementById("courses-list");
+        const filesList = document.getElementById("files-list");
+        const title = document.getElementById("course-title");
+        const desc = document.getElementById("course-description");
+        const backBtn = document.getElementById("backToCoursesBtn");
+        const searchInput = document.getElementById("searchInput");
+
+        /*  FETCH BACKEND FILES  */
+        async function fetchBackendFiles(subName) {
+          try {
+            const res = await fetch(
+              `${API_BASE}/get-course-files/${encodeURIComponent(subName)}`
+            );
+            const data = await res.json();
+            return data.success ? data.files : [];
+          } catch (err) {
+            console.error(err);
+            return [];
+          }
+        }
+
+        /*  RENDER COURSES  */
+        function renderCourses() {
+          const term = searchInput.value.toLowerCase();
+          coursesList.innerHTML = "";
+
+          coursesData
+            .filter((c) => c.name.toLowerCase().includes(term))
+            .forEach((course) => {
+              const div = document.createElement("div");
+              div.className = "bg-white p-6 rounded-lg shadow cursor-pointer";
+              div.innerHTML = `
+                    <h3 class="text-xl font-bold">${course.name}</h3>
+                    <p class="text-gray-600">${course.description}</p>
+                `;
+              div.onclick = () => openCourse(course);
+              coursesList.appendChild(div);
             });
-            // --- HELPERS & GENERIC LISTENERS ---
-            function getFileIconClass(fileName) {
-                const extension = fileName.split('.').pop().toLowerCase();
-                switch (extension) {
-                    case 'pdf':
-                        return 'fa-file-pdf';
-                    case 'doc':
-                    case 'docx':
-                        return 'fa-file-word';
-                    case 'xls':
-                    case 'xlsx':
-                        return 'fa-file-excel';
-                    case 'ppt':
-                    case 'pptx':
-                        return 'fa-file-powerpoint';
-                    case 'jpg':
-                    case 'jpeg':
-                    case 'png':
-                    case 'gif':
-                        return 'fa-file-image';
-                    case 'zip':
-                    case 'rar':
-                        return 'fa-file-archive';
-                    default:
-                        return 'fa-file';
-                }
-            }
+        }
 
-            function formatFileSize(bytes) {
-                if (bytes === 0) return '0 Bytes';
-                const k = 1024;
-                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-                const i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-            }
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            backToCoursesBtn.addEventListener('click', showCoursesView);
-            searchInput.addEventListener('input', () => renderCourses());
-            // --- INITIAL LOAD ---
-            renderCourses();
-        });
+        /*  OPEN COURSE  */
+        async function openCourse(course) {
+          coursesView.classList.add("hidden");
+          detailsView.classList.remove("hidden");
+
+          title.textContent = course.name;
+          desc.textContent = course.description;
+          filesList.innerHTML = `<p class="text-gray-500">Loading...</p>`;
+
+          // Static files
+          const staticFiles = course.files || [];
+
+          //  Backend files
+          const backendFiles = await fetchBackendFiles(course.name);
+
+          //  Merge (static + backend)
+          const merged = [
+            ...staticFiles,
+            ...backendFiles.map((f) => ({
+              name: f.file_name,
+              description: f.file_desc || "",
+              url: "http://localhost:3000" + f.file_path,
+            })),
+          ];
+
+          renderFiles(merged);
+        }
+
+        /*  RENDER FILES  */
+        function renderFiles(files) {
+          filesList.innerHTML = "";
+
+          if (!files.length) {
+            filesList.innerHTML = `<p class="text-gray-500">No files found.</p>`;
+            return;
+          }
+
+          files.forEach((file) => {
+            const div = document.createElement("div");
+            div.className = "bg-white p-4 rounded shadow flex items-center";
+
+            div.innerHTML = `
+                <i class="fas fa-file-pdf text-red-500 text-2xl mr-4"></i>
+                <div class="flex-grow">
+                    <p class="font-semibold">${file.name}</p>
+                    <p class="text-sm text-gray-500">${file.description}</p>
+                </div>
+                <a href="${file.url}" target="_blank"
+                    class="bg-yellow-100 px-3 py-1 rounded">
+                    Download
+                </a>
+            `;
+            filesList.appendChild(div);
+          });
+        }
+
+        backBtn.onclick = () => {
+          detailsView.classList.add("hidden");
+          coursesView.classList.remove("hidden");
+        };
+
+        searchInput.oninput = renderCourses;
+
+        renderCourses();
+      });
     </script>
-    <script src="./script.js"></script>
-</body>
 
+    <script src="./script.js"></script>
+  </body>
 </html>
