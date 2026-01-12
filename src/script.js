@@ -4,9 +4,8 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
        <a href="../index.html"><img src="../images/images/banner.jpeg" class="w-full h-40 object-cover" alt="College Banner"></a>
         <!--  MARQUEE  -->
         <div class="marquee-container py-2">
-            <p class="marquee-text text-stone-700">
-               Welcome to Perunthalaivar Kamarajar Arts College – Pondicherry &nbsp; • &nbsp; Admissions Open 2026 &nbsp; • &nbsp;Re-Accredited by NAAC with 'B' Grade &nbsp; • &nbsp; Excellence in
-                Arts & Science Education
+            <p class="marquee-text text-stone-700" id="noticeMarquee">
+               Loading notice ...
             </p>
         </div>
 
@@ -210,6 +209,37 @@ const header = document.getElementById("header-box").innerHTML = `<header class=
         </div>
         
     </header>`
+
+// Fetch marquee notice
+const backendURL = "http://localhost:3000";
+const marqueeEl = document.getElementById("noticeMarquee");
+
+// Check if marquee element exists
+if (!marqueeEl) {
+  console.error("Error: noticeMarquee element not found in the DOM");
+}
+
+// Fetch notice from backend
+async function fetchNotice() {
+  try {
+    const res = await fetch(`${backendURL}/api/college/get-notice`);
+    const data = await res.json();
+
+    if (
+      data.success &&
+      Array.isArray(data.notices) &&
+      data.notices.length > 0
+    ) {
+      if (marqueeEl) marqueeEl.textContent = data.notices[0].notice;
+    } else {
+      if (marqueeEl) marqueeEl.textContent = "No notice available";
+    }
+  } catch (error) {
+    console.error("Error fetching notice:", error);
+    if (marqueeEl) marqueeEl.textContent = "Failed to load notice";
+  }
+}
+fetchNotice();
 
 // Footer
 const footer = document.getElementById("footer-box").innerHTML = `<footer class="bg-slate-900 text-gray-300 py-4 border-t-4 border-amber-700">
