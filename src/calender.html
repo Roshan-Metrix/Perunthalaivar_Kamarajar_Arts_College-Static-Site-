@@ -58,7 +58,7 @@
 
     <main class="p-4 md:p-8">
       <div
-        class="w-full max-w-7xl mx-auto bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg p-6 md:p-8"
+        class="w-[90%] max-w-7xl h-[70%] mx-auto bg-white/70 backdrop-blur-lg rounded-2xl shadow-lg p-6 md:p-8"
       >
         <div class="flex flex-col md:flex-row gap-8">
           <!-- Left Side: Calendar -->
@@ -200,8 +200,6 @@
                 apiEvents[key].push(ev.events);
               });
             }
-
-            console.log("API EVENTS MAP:", apiEvents);
           } catch (err) {
             console.error("API Fetch Failed:", err);
           }
@@ -221,11 +219,13 @@
 
           if (governmentHolidays[id]) {
             type = "holiday";
-            color = "#5A5AF6";
-            message = governmentHolidays[id];
-          } else if (dow === 0) {
-            type = "holiday";
             color = "#ff0000";
+            // color = "#5A5AF6";
+            message = governmentHolidays[id];
+          } else if (dow === 0) { // Sunday
+            type = "holiday";
+            // color = "#ff0000";
+            color = "rgba(255,0,0,0.8)";
           } else if (apiEvents[id]) {
             type = "event";
             color = "#22c55e";

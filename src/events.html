@@ -1,121 +1,152 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events</title>
-    <link rel="stylesheet" href="../dist/output.css">
-    <style>
-        .section-card {
-            scroll-margin-top: 80px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Events</title>
+  <link rel="stylesheet" href="../dist/output.css" />
 </head>
 
-<body>
-    <!--  HEADER -->
-    <div id="header-box"></div>
-    <!-- Main Content -->
-    <main>
+<body class="bg-gray-100">
 
-        <!-- Facilities Sections -->
-        <div class="container mx-auto px-6 py-12 md:py-20 space-y-16">
+  <!-- HEADER -->
+  <div id="header-box"></div>
 
-            <!-- NCC -->
-            <section id="playground" class="section-card bg-white p-8 rounded-xl shadow-lg overflow-hidden">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="w-full md:w-1/2 grid grid-cols-2 gap-4 mb-6 md:mb-0 md:mr-8 image-gallery"
-                        data-gallery-id="playground">
-                        <img src="../images/events/ncc3.jpeg" alt="NCC 2025"
-                            class="gallery-item h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="../images/events/ncc1.jpeg" alt="NCC 2025"
-                            class="gallery-item h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="../images/events/ncc2.jpeg" alt="NCC 2025"
-                            class="gallery-item col-span-2 h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                    </div>
-                    <div class="md:w:1/2">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">National Cadet Corps</h2>
-                        <p class="text-gray-600 leading-relaxed min-h-[120px] description-text">
-                            The National Cadet Corps successfully attended <br /> "150 Years of Vande Mataram: Lecture
-                            and Mass Singing Program," <br />receiving excellent responses from the audience. This event
-                            <br />allowed students to actively participate in celebrating this significant milestone.
-                        </p>
-                        <p class="mt-4 font-bold">8th November 2025</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Puducherry Liberation Day Celebration -->
-            <section id="playground" class="section-card bg-white p-8 rounded-xl shadow-lg overflow-hidden">
-
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w:1/2 w-1/2 p-4">
-                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Liberation Day Celebration</h2>
-                        <p class="text-gray-600 leading-relaxed min-h-[120px] description-text">
-                            On 01.11.2025 at 9:00 a.m., both NSS Unit I & II jointly organized the Puducherry Liberation Day Celebration at Perunthalaivar Kamarajar Arts College.
-                            Dr. S. Kangavel, Principal, hoisted the national flag, and NSS volunteers made all the arrangements for the event.
-                            Refreshments were provided to all the volunteers after the celebration
-                        </p>
-                        <p class="mt-4 font-bold">1st November 2025</p>
-                    </div>
-                    <div class="w-full md:w-1/2 grid grid-cols-2 gap-4 mb-6 md:mb-0 md:mr-8 image-gallery"
-                        data-gallery-id="playground">
-                        <img src="../images/events/lib1.jpg" alt="Liberation 2026"
-                            class="gallery-item h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="../images/events/lib2.jpg" alt="Liberation 2026"
-                            class="gallery-item h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                        <img src="../images/events/lib3.jpg" alt="Liberation 2026"
-                            class="gallery-item col-span-2 h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition-opacity">
-                    </div>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Image Popup Modal -->
-    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
-        <div class="relative">
-            <!-- Close Button -->
-            <button id="closeModal"
-                class="absolute -top-4 -right-4 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold shadow-lg cursor-pointer">
-                &times;
-            </button>
-
-            <!-- Popup Image -->
-            <img id="modalImage" src="" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-xl">
-        </div>
+  <!-- MAIN -->
+  <main>
+    <div id="eventsContainer" class="container mx-auto px-6 py-12 space-y-16">
+      <!-- EVENTS WILL LOAD HERE -->
     </div>
+  </main>
 
-    <!-- Footer -->
-    <div id="footer-box"></div>
-    <script>
-        const images = document.querySelectorAll(".gallery-item");
-        const modal = document.getElementById("imageModal");
-        const modalImage = document.getElementById("modalImage");
-        const closeModal = document.getElementById("closeModal");
-        images.forEach(img => {
-            img.addEventListener("click", () => {
-                modalImage.src = img.src;
-                modal.classList.remove("hidden");
-                modal.classList.add("flex");
-            });
-        });
-        closeModal.addEventListener("click", () => {
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-        });
-        // Close modal when clicking outside image
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.classList.add("hidden");
-                modal.classList.remove("flex");
-            }
-        });
-    </script>
+  <!-- IMAGE MODAL -->
+  <div id="imageModal"
+    class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
+    <div class="relative">
+      <button id="closeModal"
+        class="absolute -top-4 -right-4 bg-white text-black rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">
+        &times;
+      </button>
+      <img id="modalImage"
+        class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-xl" />
+    </div>
+  </div>
 
-    <script src="./script.js"></script>
+  <!-- FOOTER -->
+  <div id="footer-box"></div>
+
+  <!-- SCRIPT -->
+  <script>
+    const backendUrl = "http://localhost:3000";
+    const eventsContainer = document.getElementById("eventsContainer");
+
+    /* FETCH EVENTS */
+    async function fetchEvents() {
+      try {
+        const res = await fetch(`${backendUrl}/api/college/get-event-images`);
+        const data = await res.json();
+
+        if (!data.success) {
+          eventsContainer.innerHTML = "<p>Error loading events</p>";
+          return;
+        }
+
+        renderEvents(data.events);
+      } catch (error) {
+        console.error("Fetch Error:", error);
+        eventsContainer.innerHTML = "<p>Server Error</p>";
+      }
+    }
+
+    /* RENDER EVENTS */
+    function renderEvents(events) {
+      eventsContainer.innerHTML = "";
+
+      events.forEach(event => {
+        const images = [event.photo1, event.photo2, event.photo3].filter(Boolean);
+
+        const imageHTML = images.map((img, index) => `
+          <img src="${backendUrl}${img}"
+            class="gallery-item ${index === 2 ? 'col-span-2' : ''} 
+            h-full w-full object-cover rounded-lg shadow-md cursor-pointer hover:opacity-80 transition"
+          />
+        `).join("");
+
+        const section = document.createElement("section");
+        section.className = "bg-white p-8 rounded-xl shadow-lg overflow-hidden";
+
+        section.innerHTML = `
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 grid grid-cols-2 gap-4 mb-6 md:mb-0 md:mr-8 image-gallery">
+              ${imageHTML}
+            </div>
+
+            <div class="md:w-1/2">
+              <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                ${event.name}
+              </h2>
+
+              <p class="text-gray-600 leading-relaxed min-h-[120px]">
+                ${event.description}
+              </p>
+
+              <p class="mt-4 font-bold">
+                ${formatDate(event.date)}
+              </p>
+            </div>
+          </div>
+        `;
+
+        eventsContainer.appendChild(section);
+      });
+
+      attachImagePopup();
+    }
+
+    /* DATE FORMAT */
+    function formatDate(dateStr) {
+      return new Date(dateStr).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    /* IMAGE POPUP */
+    function attachImagePopup() {
+      const images = document.querySelectorAll(".gallery-item");
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
+      const closeModal = document.getElementById("closeModal");
+
+      images.forEach(img => {
+        img.onclick = () => {
+          modalImage.src = img.src;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+        };
+      });
+
+      closeModal.onclick = () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      };
+
+      modal.onclick = (e) => {
+        if (e.target === modal) {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }
+      };
+    }
+
+    /* INIT */
+    fetchEvents();
+  </script>
+
+  <script src="./script.js"></script>
 </body>
 
 </html>
